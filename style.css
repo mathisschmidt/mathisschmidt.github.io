@@ -131,3 +131,32 @@ aside li {
 footer {
   margin-top: 10px;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 650px){
+	main{
+		display: block;
+	}
+
+	body {
+		width: 100%;
+	}
+
+	nav {
+		height: 100%;
+	}
+
+	nav ul {
+		display:block;
+	}
+
+	nav li{
+		display: block;
+		margin-bottom:15px;
+	}
+
+	aside{
+		margin:0;
+		margin-top: 10px;
+	}
+}
