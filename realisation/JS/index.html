@@ -1,23 +1,22 @@
 <html>
-  <head>
-    <script type="text/javascript">
-      var a = 1;
-      var b = "x";
-      c = 3;
-      function fonction1()
-      {
-        var a =2;
-        b = 3;
-        c= 1;
-        alert("fonction1 : a vaut "+a+", b vaut "+b+" et c vaut "+c);
-      }
-      function fonction2(d)
-      {
-        alert("fonction2 :a vaut "+a+", b vaut "+b+", c vaut "+c+" et d vaut "+d);
-      }
-      fonction1();
-      fonction2(a);
-    </script>
-  </head>
-<body></body>
+<head>
+<SCRIPT LANGUAGE="Javascript" SRC="./geometrie/point.js"> </SCRIPT>
+<script>
+function init()
+{
+canvas = document.getElementById('myCanvas');
+for(i=1;i<10;i++)
+{
+for(j=1;j<10;j++)
+{
+point1 = new point(20*i,20*j,myCanvas);
+point1.affiche();
+}
+}
+}
+</script>
+</head>
+<body onload='init()'>
+<canvas id="myCanvas" width="200" height="200"/>
+</body>
 </html>
