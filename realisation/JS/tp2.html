@@ -1,0 +1,21 @@
+<html>
+    <head> Test js</head>
+    <body>
+        <canvas id="myCanvas" width="200" height="200"></canvas>
+    </body>
+</html>
+
+<script>
+    var myCanva = document.getElementById('myCanvas');
+
+    window.addEventListener('load', (event) => {
+        myCanva.fillRect(25, 25, 100, 100);
+
+        var intervalID = window.setInterval(canvaMove, 100);
+    });
+
+    function canvaMove() {
+        
+
+    }
+</script>
