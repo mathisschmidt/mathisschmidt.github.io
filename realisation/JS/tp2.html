@@ -1,0 +1,26 @@
+<html>
+    <head> Test js</head>
+    <body>
+        <h1 id="text"></h1>
+    </body>
+</html>
+<script>
+    const affiche = document.getElementById('text');
+    var count = 10;
+
+    window.addEventListener('load', (event) => {
+        affiche.textContent = '10';
+        var intervalID = window.setInterval(clock, 1000);
+    });
+
+    function clock() {
+        if (count > 0) {
+            count = count - 1;
+            affiche.textContent = count;
+        } else {
+            clearInterval(intervalID);
+        }
+        
+
+    }
+</script>

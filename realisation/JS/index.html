@@ -1,26 +1,46 @@
+<!DOCTYPE html>
 <html>
-    <head> Test js</head>
-    <body>
-        <h1 id="text"></h1>
-    </body>
-</html>
-<script>
-    const affiche = document.getElementById('text');
-    var count = 10;
+  <head>
+    <meta charset="utf-8">
 
-    window.addEventListener('load', (event) => {
-        affiche.textContent = '10';
-        var intervalID = window.setInterval(clock, 1000);
-    });
+    <title>JS</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
 
-    function clock() {
-        if (count > 0) {
-            count = count - 1;
-            affiche.textContent = count;
-        } else {
-            clearInterval(intervalID);
-        }
+  </head>
+
+  <body>
+    <header>
+      <h1>En-tête</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="../../index.html">Acceuil</a></li>
+        <li><a href="../HTML/index.html">HTML</a></li>
+        <li><a href="#">JS</a></li>
+        <li><a href="../PHP/index.html">PHP</a></li>
+        <li><a href="../Vue/index.html">Vue</a></li>
+      </ul>
+
+     </nav>
+
+     <main>
+      <article>
+        <h2>Mes travaux en JS</h2>
         
+      </article>
 
-    }
-</script>
+      <aside>
+        <h2>Réalisations</h2>
+        <ul>
+          <li><a href="tp2.html">TP2</a></li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <p>©Copyright Mathis SCHMIDT, IMR1</p>
+    </footer>
+
+  </body>
+</html>
