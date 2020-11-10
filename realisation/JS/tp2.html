@@ -9,7 +9,8 @@
     var myCanva = document.getElementById('myCanvas');
 
     window.addEventListener('load', (event) => {
-        myCanva.fillRect(25, 25, 100, 100);
+        var ctx = myCanva.getContext('2d');
+        ctx.fillRect(25, 25, 100, 100);
 
         var intervalID = window.setInterval(canvaMove, 100);
     });
