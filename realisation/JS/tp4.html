@@ -7,10 +7,9 @@
 </html>
 
 <script>
-    let carre = function (x, y) {
+    let Carre = function (x, y) {
         this.x = x;
         this.y = y;
-        let intervalID;
 
         this.draw = function () {
             ctx.fillStyle = 'red';
@@ -23,7 +22,7 @@
 
         this.move = function () {
             this.clear();
-            this.x = this.x + 10;
+            this.x += 10;
             if (this.x < 150) {
                 this.draw();
             }
@@ -36,9 +35,9 @@
     let ctx = myCanva.getContext('2d');
     let count = 0;
     let intervalID;
-    let carre1 = new carre(0, 0);
-    let carre2 = new carre(0, 55);
-    let carre3 = new carre(0, 110);
+    let carre1 = new Carre(0, 0);
+    let carre2 = new Carre(0, 55);
+    let carre3 = new Carre(0, 110);
 
     
 
@@ -57,13 +56,13 @@
         myText.textContent = count;
         switch (count) {
             case 4 :
-                window.setInterval(carre1.move(), 100);
+                window.setInterval(move(carre1), 100);
                 break;
             case 5 :
-                window.setInterval(carre2.move(), 100);
+                window.setInterval(move(carre2), 100);
                 break;
             case 6 :
-                window.setInterval(carre3.move(), 100);
+                window.setInterval(move(carre3), 100);
                 break;
             default:
                 break;
@@ -72,4 +71,10 @@
             clearInterval(intervalID);
         }
     }
+
+    function move(carre) {
+        carre.move();
+    }
+
+
 </script>
