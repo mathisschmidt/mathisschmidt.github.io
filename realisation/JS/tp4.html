@@ -7,38 +7,69 @@
 </html>
 
 <script>
+    let carre = function (x, y) {
+        this.x = x;
+        this.y = y;
+        let intervalID;
+
+        this.draw = function () {
+            ctx.fillStyle = 'red';
+            ctx.fillRect(this.x, this.y, 50, 50);
+        }
+
+        this.clear = function () {
+            ctx.clearRect(this.x, this.y, 50, 50);
+        }
+
+        this.move = function () {
+            this.clear();
+            this.x = this.x + 10;
+            if (this.x < 150) {
+                this.draw();
+            }
+        }
+
+    }
+
     let myCanva = document.getElementById('myCanvas');
     let myText = document.getElementById('text');
     let ctx = myCanva.getContext('2d');
-    let x = 0;
-    let count = 1;
+    let count = 0;
     let intervalID;
+    let carre1 = new carre(0, 0);
+    let carre2 = new carre(0, 55);
+    let carre3 = new carre(0, 110);
+
+    
 
     window.addEventListener('load', (event) => {
         myText.textContent = "Wait";
-        ctx.fillStyle = 'red';
-        ctx.fillRect(x, 0, 50, 50);
+
+        carre1.draw();
+        carre2.draw();
+        carre3.draw();
+
         intervalID = window.setInterval(clock, 1000);
     });
 
-    function canvaMove() {
-        x = x + 10;
-        if (x < 150) {
-            ctx.clearRect(0, 0, 200, 200);
-            ctx.fillRect(x, 0, 50, 50);
-        }
-        else {
-            clearInterval(intervalID);
-        }
-    }
-
     function clock() {
-        if (count <= 2) {
-            count = count + 1;
-            myText.textContent = count;
-        } else {
+        count = count + 1;
+        myText.textContent = count;
+        switch (count) {
+            case 4 :
+                window.setInterval(carre1.move(), 100);
+                break;
+            case 5 :
+                window.setInterval(carre2.move(), 100);
+                break;
+            case 6 :
+                window.setInterval(carre3.move(), 100);
+                break;
+            default:
+                break;
+        }
+        if (count >= 6) {
             clearInterval(intervalID);
-            intervalID = window.setInterval(canvaMove, 100);
         }
     }
 </script>
