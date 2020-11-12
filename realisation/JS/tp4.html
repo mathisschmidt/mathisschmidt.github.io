@@ -11,7 +11,7 @@
     let myText = document.getElementById('text');
     let ctx = myCanva.getContext('2d');
     let x = 0;
-    let count = 0;
+    let count = 1;
     let intervalID;
 
     window.addEventListener('load', (event) => {
@@ -33,7 +33,7 @@
     }
 
     function clock() {
-        if (count < 2) {
+        if (count <= 2) {
             count = count + 1;
             myText.textContent = count;
         } else {
