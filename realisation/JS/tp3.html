@@ -11,7 +11,7 @@
     let myText = document.getElementById('text');
     let ctx = myCanva.getContext('2d');
     let x = 0;
-    let count = 0;
+    let count = 1;
     let intervalID;
 
     window.addEventListener('load', (event) => {
@@ -38,7 +38,7 @@
             count = count + 1;
         } else {
             clearInterval(intervalID);
-            intervalID = window.setInterval(clock, 1000);
+            intervalID = window.setInterval(canvaMove, 100);
         }
     }
 </script>
