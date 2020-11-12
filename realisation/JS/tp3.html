@@ -1,0 +1,44 @@
+<html>
+    <head></head>
+    <body>
+        <h1 id="text"></h1>
+        <canvas id="myCanvas" width="200" height="200"></canvas>
+    </body>
+</html>
+
+<script>
+    let myCanva = document.getElementById('myCanvas');
+    let myText = document.getElementById('text');
+    let ctx = myCanva.getContext('2d');
+    let x = 0;
+    let count = 0;
+    let intervalID;
+
+    window.addEventListener('load', (event) => {
+        myText.textContent = "Wait";
+        ctx.fillStyle = 'red';
+        ctx.fillRect(x, 0, 50, 50);
+        intervalID = window.setInterval(clock, 1000);
+    });
+
+    function canvaMove() {
+        x = x + 10;
+        if (x < 150) {
+            ctx.clearRect(0, 0, 200, 200);
+            ctx.fillRect(x, 0, 50, 50);
+        }
+        else {
+            clearInterval(intervalID);
+        }
+    }
+
+    function clock() {
+        if (count <= 2) {
+            myText.textContent = count;
+            count = count + 1;
+        } else {
+            clearInterval(intervalID);
+            intervalID = window.setInterval(clock, 1000);
+        }
+    }
+</script>
