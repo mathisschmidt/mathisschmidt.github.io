@@ -56,13 +56,13 @@
         myText.textContent = count;
         switch (count) {
             case 4 :
-                window.setInterval(move(carre1), 100);
+                window.setInterval(carre1.move(), 100);
                 break;
             case 5 :
-                window.setInterval(move(carre2), 100);
+                window.setInterval(carre2.move(), 100);
                 break;
             case 6 :
-                window.setInterval(move(carre3), 100);
+                window.setInterval(carre3.move(), 100);
                 break;
             default:
                 break;
@@ -71,10 +71,5 @@
             clearInterval(intervalID);
         }
     }
-
-    function move(carre) {
-        carre.move();
-    }
-
 
 </script>
