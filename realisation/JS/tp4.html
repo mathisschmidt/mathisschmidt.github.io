@@ -26,11 +26,17 @@
             ctx.clearRect(this.x, this.y, 50, 50);
         }
 
+        this.startMove = function () {
+            this.intervalID = window.setInterval(this.move(), 100);
+        }
+
         this.move = function () {
             this.clear();
             this.x += 10;
             if (this.x < 150) {
                 this.draw();
+            } else{
+                clearInterval(this.intervalID);
             }
         }
 
@@ -62,13 +68,13 @@
         myText.textContent = count;
         switch (count) {
             case 4 :
-                window.setInterval(carre1.move(), 100);
+                carre1.startMove();
                 break;
             case 5 :
-                window.setInterval(carre2.move(), 100);
+                carre2.startMove();
                 break;
             case 6 :
-                window.setInterval(carre3.move(), 100);
+                carre3.startMove();
                 break;
             default:
                 break;
