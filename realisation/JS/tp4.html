@@ -16,27 +16,18 @@
     let Carre = function (x, y) {
         this.x = x;
         this.y = y;
+        this.finish = "false";
 
         this.draw = function () {
             ctx.fillStyle = 'red';
             ctx.fillRect(this.x, this.y, 50, 50);
         }
 
-        this.clear = function () {
-            ctx.clearRect(this.x, this.y, 50, 50);
-        }
-
-        this.startMove = function () {
-            this.intervalID = window.setInterval(this.move(), 100);
-        }
-
-        this.move = function () {
-            this.clear();
-            this.x += 10;
+        this.update = function () {
             if (this.x < 150) {
-                this.draw();
+                this.x += 10;
             } else{
-                clearInterval(this.intervalID);
+                this.finish = "true";
             }
         }
 
@@ -55,33 +46,29 @@
 
     window.addEventListener('load', (event) => {
         myText.textContent = "Wait";
-
-        carre1.draw();
-        carre2.draw();
-        carre3.draw();
-
-        intervalID = window.setInterval(clock, 1000);
+        intervalID = window.setInterval(clock, 100);
     });
 
     function clock() {
-        count = count + 1;
-        myText.textContent = count;
-        switch (count) {
-            case 4 :
-                carre1.startMove();
-                break;
-            case 5 :
-                carre2.startMove();
-                break;
-            case 6 :
-                carre3.startMove();
-                break;
-            default:
-                break;
+        count = count + 0.1;
+        myText.textContent = count.toFixed(2);
+        ctx.clearRect(0, 0, 200, 200);
+        if (count >= 4.0) {
+            carre1.update();
+            carre1.draw();
         }
-        if (count >= 6) {
+        if (count >= 5.0) {
+            carre2.update();
+            carre2.draw();
+        }
+        if (count >= 6.0) {
+            carre3.update();
+            carre3.draw();
+        }
+        if (carre1.finish == "true" && carre2.finish == "true" && carre3.finish == "true") {
             clearInterval(intervalID);
         }
+
     }
 
 </script>
