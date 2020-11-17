@@ -19,7 +19,7 @@
 
         this.draw = function () {
             ctx.fillStyle = 'red';
-            ctx.fillRect(this.x, this.y, 50, 50);
+            ctx.fillRect(this.x, this.y, 10, 10);
         }
 
         this.update = function () {
@@ -37,34 +37,41 @@
     let ctx = myCanva.getContext('2d');
     let count = 0;
     let intervalID;
-    let carre1 = new Carre(0, 0);
-    let carre2 = new Carre(0, 55);
-    let carre3 = new Carre(0, 110);
+    let carre = [];
+    let nbCarreMove = 0;
+    let count2 = 0;
 
     
 
     window.addEventListener('load', (event) => {
         myText.textContent = "Wait";
+        let y = 0;
+        for (let i = 0; i < 10; i++) {
+            carre.push(new Carre(0, y));
+            y = y + 15;            
+        }
         intervalID = window.setInterval(clock, 100);
     });
 
     function clock() {
-        count = count + 0.1;
-        myText.textContent = count.toFixed(2);
+        count = count + 1;
+        myText.textContent = count;
         ctx.clearRect(0, 0, 200, 200);
-        if (count >= 4.0) {
-            carre1.update();
-            carre1.draw();
+        if (count >= 30) {
+            if (count2 == 10 ) {
+                 nbCarreMove ++;
+                 count2 = 0;
+            } else {
+                count2 = count2 + 1;
+            }
         }
-        if (count >= 5.0) {
-            carre2.update();
-            carre2.draw();
-        }
-        if (count >= 6.0) {
-            carre3.update();
-            carre3.draw();
-        }
-        if (carre1.finish == "true" && carre2.finish == "true" && carre3.finish == "true") {
+        for (let i = 0; i < nbCarreMove; i++) {
+            carre[i].update();
+            carre[i].draw();      
+        }    
+
+        if (carre[9].finish == "true") {
+            myText.textContent = carre[9].finish;
             clearInterval(intervalID);
         }
 
