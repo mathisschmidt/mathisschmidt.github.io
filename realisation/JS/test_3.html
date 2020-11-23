@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <style> 
+            #animatedElem {
+              position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="text"></h1>
+        <button id="0ms" onclick="debut(0)" >Déplacer avec 0ms</button>
+        <button id="33ms" onclick="debut(33)" >Déplacer avec 33ms</button>
+        <button id="100ms" onclick="debut(100)" >Déplacer avec 100ms</button>
+        <div  id="animatedElem"><img src="images/carreRougeTete.png" width="100px" height="100px"></div>
+    </body>
+</html>
+
+<script>
+    let elem = document.getElementById("animatedElem");
+    let left = 0;
+    let timer;
+    let millis = 16;
+    let vitesse = 50;
+    let pas = 10;
+
+    window.addEventListener('load', (event) => {
+        // Move the element 10px on the right every 16ms
+        timer = window.setInterval(moveLeft, vitesse);
+
+    });
+    function pausecomp(millis) {
+		var date = new Date();
+		var curDate = null;
+		do { 
+			curDate = new Date(); 
+		} while(curDate-date < millis);
+	}
+
+    function moveLeft() {
+        elem.style.left = ( left += pas ) + "px";
+        pausecomp(millis);
+        // clear the timer at 400px to stop the animation
+        if ( left > 400 ) {
+            clearInterval( timer );
+            timer = setInterval(moveRight, vitesse);
+        }
+        
+    }
+    
+    function moveRight() {
+        elem.style.left = ( left -= pas ) + "px";
+        pausecomp(millis);
+        // clear the timer at 400px to stop the animation
+        if ( left < 0 ) {
+            clearInterval( timer );
+            timer = setInterval(moveLeft, vitesse);
+
+        }
+    }
+
+    function debut(pause) {
+        millis = pause;
+    }   
+    
+
+</script>
