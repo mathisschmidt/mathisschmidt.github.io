@@ -7,16 +7,84 @@
 </html>
 
 <script>
+    class Man {
+        constructor() {
+            this.x = 0;
+            this.y = 0;
+            this.left = 0;
+            this.right = 0;
+            this.forward = 0;
+            this.back = 0;
+        }
+
+        moveLeft() {
+            if ( this.left != 3 && this.x - 64 > 0) {
+                this.x -= 64;
+                yImage = 0;
+                xImage = 128 * this.left;
+                this.left ++;
+            } else {
+                this.left = 0;
+                yImage = 0;
+                xImage = 128 * this.left;
+            }
+        }
+
+        moveRight() {
+            if ( this.right != 3 && this.x + 64 < 500) {
+                this.x += 64;
+                yImage = 128;
+                xImage = 128 * this.right;
+                this.left ++;
+            } else {
+                this.left = 0;
+                yImage = 128;
+                xImage = 128 * this.right;
+            }
+        }
+
+        moveForward() {
+            if ( this.forward != 3 && this.y + 64 < 500) {
+                this.y += 64;
+                yImage = 128 * 2;
+                xImage = 128 * this.forward;
+                this.forward ++;
+            } else {
+                this.forward = 0;
+                yImage = 128 * 2;
+                xImage = 128 * this.forward;
+            }
+        }
+
+        moveBack() {
+            if ( this.back != 3 && this.y - 64 > 0) {
+                this.y -= 64;
+                yImage = 128 * 3;
+                xImage = 128 * this.back;
+                this.back ++;
+            } else {
+                this.back = 0;
+                yImage = 128 * 3;
+                xImage = 128 * this.back;
+            }
+        }
+        
+
+
+    }
+
+
     theCanvas = document.getElementById("canvas_1");
     var ctx = theCanvas.getContext('2d');
     var xImage = 0;
     var yImage = 0;
+    var man = new Man();
     var img = new Image();
     img.src = "./images/hero_walk_cycle_spritesheet_by_mrnoobtastic-d3defej.png";
-    img.addEventListener('load', draw());
-    function draw() {
-        ctx.drawImage(img, 0, 0, 128, 128, 0, 0, 128, 128);
-    }
+    img.addEventListener('load', start );
+    
+    
+    
 
     var animFrame = window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
@@ -25,13 +93,67 @@
                 window.msRequestAnimationFrame     ||
                 null ;
 
-    class Man {
-        constructor() {
-            this.x = 250;
-            this.y = 250;
-        }
+    
 
+    function start() {
+        ctx.clearRect(0, 0, 500, 500);
+        ctx.drawImage(img, xImage, yImage, 128, 128, man.x, man.y, 128, 128);
+        animFrame( recursiveAnim );
     }
 
+    var recursiveAnim = function() {
+        mainloop();
+        animFrame( recursiveAnim );
+    };
+
+    var mainloop = function() {
+	    clearGame();
+        updateGame();
+        drawGame();
+    };
+
+    function clearGame(){
+	    ctx.clearRect(0, 0, 500, 500);
+    }
+
+
+    function updateGame(){
+    }
+
+    function drawGame(){
+        ctx.drawImage(img, xImage, yImage, 128, 128, man.x, man.y, 128, 128);
+    }
     
+    window.addEventListener("keydown", function (event) {
+        console.log(event.key);
+        if (event.defaultPrevented) {
+            return; // Should do nothing if the key event was already consumed.
+        }
+
+        switch (event.key) {
+            case "ArrowDown":
+                man.moveForward();
+                break;
+            case "ArrowUp":
+                man.moveBack();
+                break;
+            case "ArrowLeft":
+                man.moveLeft();
+                break;
+            case "ArrowRight":
+                man.moveRight();
+                break;
+            case "Enter":
+                // Do something for "enter" or "return" key press.
+                break;
+            case "Escape":
+                // Do something for "esc" key press.
+                break;
+            default:
+                return; // Quit when this doesn't handle the key event.
+        }
+
+        // Consume the event for suppressing "double action".
+        event.preventDefault();
+    }, true);
 </script>
