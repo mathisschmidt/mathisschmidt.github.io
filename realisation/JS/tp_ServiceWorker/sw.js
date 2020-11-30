@@ -2,8 +2,8 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
       caches.open('v1').then(function(cache) {
         return cache.addAll([
-          './tp_ServiceWorker/',
-          './tp_ServiceWorker/tp_serviceWorker.html',
+          '../tp_ServiceWorker/',
+          './tp_serviceWorker.html',
           'https://cors-anywhere.herokuapp.com/https://planning.univ-rennes1.fr/jsp/custom/modules/plannings/9EYlGR3a.shu'
         ]);
       })
