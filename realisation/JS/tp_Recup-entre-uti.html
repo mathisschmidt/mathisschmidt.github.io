@@ -18,62 +18,69 @@
         }
 
         moveLeft() {
-            if ( this.left != 3 && this.x - 64 > 0) {
+            if (this.x - 64 > 0) {
                 this.x -= 64;
-                yImage = 0;
-                xImage = 128 * this.left;
-                this.left ++;
-            } else {
-                this.left = 0;
-                yImage = 0;
-                xImage = 128 * this.left;
-            }
+                if ( this.left != 3) {
+                    yImage = 0;
+                    xImage = 128 * this.left;
+                    this.left ++;
+                } else {
+                    this.left = 0;
+                    yImage = 0;
+                    xImage = 128 * this.left;
+                }
+            } 
         }
 
         moveRight() {
-            if ( this.right != 3 && this.x + 64 < 500) {
+            if (this.x + 64 < 500) {
                 this.x += 64;
-                yImage = 128;
-                xImage = 128 * this.right;
-                this.left ++;
-            } else {
-                this.left = 0;
-                yImage = 128;
-                xImage = 128 * this.right;
+                if ( this.right != 3) {
+                    yImage = 128;
+                    xImage = 128 * this.right;
+                    this.left ++;
+                } else {
+                    this.right = 0;
+                    yImage = 128;
+                    xImage = 128 * this.right;
+                }
             }
         }
 
         moveForward() {
-            if ( this.forward != 3 && this.y + 64 < 500) {
+            if (this.y + 64 < 500) {
                 this.y += 64;
-                yImage = 128 * 2;
-                xImage = 128 * this.forward;
-                this.forward ++;
-            } else {
-                this.forward = 0;
-                yImage = 128 * 2;
-                xImage = 128 * this.forward;
+                if ( this.right != 3) {
+                    yImage = 128 * 2;
+                    xImage = 128 * this.forward;
+                    this.forward ++;
+                } else {
+                    this.forward = 0;
+                    yImage = 128 * 2;
+                    xImage = 128 * this.forward;
+                }
             }
         }
 
         moveBack() {
-            if ( this.back != 3 && this.y - 64 > 0) {
+            if (this.y - 64 > 0) {
                 this.y -= 64;
-                yImage = 128 * 3;
-                xImage = 128 * this.back;
-                this.back ++;
-            } else {
-                this.back = 0;
-                yImage = 128 * 3;
-                xImage = 128 * this.back;
+                if ( this.right != 3) {
+                    yImage = 128 * 3;
+                    xImage = 128 * this.back;
+                    this.back ++;
+                } else {
+                    this.back = 0;
+                    yImage = 128 * 3;
+                    xImage = 128 * this.back;
+                }
             }
         }
-        
-
 
     }
 
 
+    
     theCanvas = document.getElementById("canvas_1");
     var ctx = theCanvas.getContext('2d');
     var xImage = 0;
