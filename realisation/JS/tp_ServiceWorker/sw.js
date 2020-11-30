@@ -28,7 +28,7 @@ self.addEventListener('install', function(event) {
           });
           return response;
         }).catch(function () {
-          return caches.match('/sw-test/gallery/myLittleVader.jpg');
+            console.log('Echec fetch dans sw.js');
         });
       }
     }));
