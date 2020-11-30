@@ -2,14 +2,14 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
       caches.open('v1').then(function(cache) {
         return cache.addAll([
-          '/realisation/JS/tp_ServiceWorker/',
+          //'/realisation/JS/tp_ServiceWorker/',
           '/realisation/JS/tp_ServiceWorker/tp_serviceWorker.html'
         ]);
       })
     );
-  });
+});
   
-  self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function(event) {
     event.respondWith(caches.match(event.request).then(function(response) {
       // caches.match() always resolves
       // but in case of success response will have value
@@ -31,5 +31,5 @@ self.addEventListener('install', function(event) {
         });
       }
     }));
-  });
+});
   
