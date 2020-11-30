@@ -2,9 +2,25 @@
     <head>
     </head>
     <body>
+        <h1 id="info"></h1>
     </body>
 </html>
 
 <script>
-    
+    let myInfo = document.getElementById('info');
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/tp_serviceWorker/sw.js', { scope: '/tp_serviceWorker/' }).then(function(reg) {
+
+            if(reg.installing) {
+                myInfo.textContent = "Service worker installing";
+            } else if(reg.waiting) {
+                myInfo.textContent = "Service worker installed";
+            } else if(reg.active) {
+                myInfo.textContent = "Service worker active";
+            }
+  }).catch(function(error) {
+    myInfo.textContent = "Failed : " + error;
+  });
+}
 </script>
