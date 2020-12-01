@@ -3,11 +3,13 @@
     </head>
     <body>
         <h1 id="info"></h1>
+        <p id="calendar"></p>
     </body>
 </html>
 
 <script>
     let myInfo = document.getElementById('info');
+    let myText = document.getElementById('calendar');
 
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js', { scope: '/realisation/JS/tp_ServiceWorker/' }).then(function(reg) {
@@ -23,6 +25,12 @@
             myInfo.textContent = "Failed : " + error;
         });
     }
+
+    let url = "https://cors-anywhere.herokuapp.com/https://planning.univ-rennes1.fr/jsp/custom/modules/plannings/9EYlGR3a.shu";
+
+    fetch(url, {method: 'GET'}).then((response) => {
+        myText.textContent = response.text();
+    });
 
 
 

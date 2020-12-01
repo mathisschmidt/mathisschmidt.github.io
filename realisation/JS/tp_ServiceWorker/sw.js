@@ -2,7 +2,6 @@ self.addEventListener('install', function(event) {
     event.waitUntil(
       caches.open('v1').then(function(cache) {
         return cache.addAll([
-          //'/realisation/JS/tp_ServiceWorker/',
           '/realisation/JS/tp_ServiceWorker/tp_serviceWorker.html'
         ]);
       })
