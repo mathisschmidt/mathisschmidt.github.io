@@ -29,7 +29,9 @@
     let url = "https://cors-anywhere.herokuapp.com/https://planning.univ-rennes1.fr/jsp/custom/modules/plannings/9EYlGR3a.shu";
 
     fetch(url, {method: 'GET'}).then((response) => {
-        myText.textContent = response.text();
+        return response.text();
+    }).then((text) => {
+        myText.textContent = text;
     });
 
 
