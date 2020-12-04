@@ -19,14 +19,18 @@
 		<script type="text/javascript">
             
 		// EVAL : A QUOI SERT CETTE LIGNE ?
+        // REP : Cette ligne permet de lancer la fonction main une fois que le DOM a été chargé complètement.
 		window.addEventListener("load", main);
 
 
 const lat = 48.7322183;
 const lon = -3.4587994;
-//EVAL: QUELLE EST LA DIFFÉRENCE FONDAMENTALE ENTRE let ET var?
+// EVAL: QUELLE EST LA DIFFÉRENCE FONDAMENTALE ENTRE let ET var?
+// REP : Le let à une portée de bloc courant donc entre { } et var a une portée en fonction du contexte, 
+// dans un fonction elle aura la portée seulement dans la fonction, si en dehors d'une fonction elle sera global
 let macarte = null;
 //EVAL: QUELLE EST LA NATURE DE LA VARIABLE markers?
+// REP : C'est un tableau
 let markers = [];
 
 const adresses = {
@@ -36,27 +40,36 @@ const adresses = {
 }
 
 //EVAL : POURQUOI DOIT ON INDIQUER QUE LA FONCTION EST ASYNC?
+//REP : Car cette fonction vas utiliser des promesse et marché de manière asynchrone
 async function main() {
 
 	//EVAL : QUEL EFFET A LE MOT CLEF AWAIT?
+    // REP : await permet d'attendre la résolution d'une promesse, elle interrompt l'éxécution d'une fonction asynchrone
+    // et attand que la promesse soit retourné
 	let retour = await initMap();
 
 	//EVAL : DÉCRIVEZ LE CONTENU DE LA VARIABLE personne. CHANGE-T-IL?
+    // REP : La variable personne et une case du tableau adresses donc elle contiendra soit Dupont, Durand ou Dubois
+    // avec leur information d'addresse
 	for (personne in adresses) {
   
   		//URL du service web qui donne les coordonnées GPS d'une adresse
   		//EVAL : COMMENT S'APPELLE LA NOTATION ${} ?
+        // REP : Ca s'appelle un littéraux de gabarits, permet de concaténer du text sans utiliser le +
     	let url = `http://nominatim.openstreetmap.org/search.php?street=${adresses[personne].street}&city=${adresses[personne].city}&country=${adresses[personne].country}&postalcode=${adresses[personne].postalcode}&polygone_geojson=1&format=jsonv2`;
 
     	//EVAL : EN CONSULTANT L'API FETCH, INDIQUEZ LE PARAMÈTRE À PASSER AU CONSTRUCTEUR
-    	let myRequest = new Request(...);
+        //REP : La variable url
+    	let myRequest = new Request(url);
 
     	//EVAL: LE DÉVELOPPEUR A T IL PRÉVU UN COMPORTEMENT EN CAS DE REJECTION DE LA PROMESSE?
+        //REP : Vu que il n'y pas de .catch aucune action sera faite si la promesse rejecte
     	fetch(myRequest)
         	.then( function(response) { return response.json(); })
         	.then( function(data) { 
                
                //EVAL : RÉCUPÉREZ LA LATITUDE ET LONGITUDE DANS L'OBJET adresses[personne]
+               //REP : 
                 adresses[personne].lat = ... 
                 adresses[personne].lon = ... 
 
