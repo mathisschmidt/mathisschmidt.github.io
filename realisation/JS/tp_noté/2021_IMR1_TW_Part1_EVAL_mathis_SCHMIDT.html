@@ -69,21 +69,8 @@ async function main() {
         	.then( function(data) { 
                
                //EVAL : RÉCUPÉREZ LA LATITUDE ET LONGITUDE DANS L'OBJET adresses[personne]
-               //REP : 
-               console.log(data[data.lengh() - 1].lat);
-                adresses[personne].lat = 0;
-                adresses[personne].lon = 0; 
-
-                //EVAL ************ DÉBUT DE PARTIE À EXPORTER DANS UNE FONCTION (RÉPONDRE A CETTE QUESTION EN FIN D'ÉVALUATION)
-				// Nous créons un marqueur aux coordonnées et l'ajoutons à la carte.
-				var marker = L.marker([adresses[personne].lat, adresses[personne].lon]).addTo(macarte);
-				//EVAL: DÉCRIVEZ L'ACTION DE L'EXPRESSION SUIVANTE
-				markers.push(marker);
-				// Nous créons le groupe des marqueurs pour adapter le zoom
-				var group = new L.featureGroup(markers); 
-				// Nous demandons à ce que tous les marqueurs soient visibles, et ajoutons un padding (pad(0.5)) pour que les marqueurs ne soient pas coupés
-				macarte.fitBounds(group.getBounds().pad(0.5)); 
-				//EVAL ************ FIN DE PARTIE À EXPORTER
+                creaMarker(data[data.length - 1].lat, data[data.length - 1].lon)
+                
 
                 });
 	}
@@ -103,6 +90,18 @@ async function initMap() {
 
                 return 1;
             }
+
+function creaMarker(lat, lon){
+	// Nous créons un marqueur aux coordonnées et l'ajoutons à la carte.
+	var marker = L.marker([lat, lon]).addTo(macarte);
+	//EVAL: DÉCRIVEZ L'ACTION DE L'EXPRESSION SUIVANTE
+    //REP : Rajoute le marker à la fin du tableau markers
+	markers.push(marker);
+	// Nous créons le groupe des marqueurs pour adapter le zoom
+	var group = new L.featureGroup(markers); 
+	// Nous demandons à ce que tous les marqueurs soient visibles, et ajoutons un padding (pad(0.5)) pour que les marqueurs ne soient pas coupés
+	macarte.fitBounds(group.getBounds().pad(0.5)); 
+}
 
 
 
